@@ -27,7 +27,7 @@ class Stem
 	public function prefixNYtoS($word)
 	{
 		$matches  = null;
-		$contains = preg_match('/^ny([aiueo])(.*)$/', $word, $matches);
+		$contains = preg_match('/^ny([a-z])(.*)$/', $word, $matches);
 
 		if ($contains === 1) {			return 's' . $matches[1] . $matches[2];
 
@@ -37,7 +37,7 @@ class Stem
 public function prefixNYtoC($word)
 {
 	$matches  = null;
-	$contains = preg_match('/^ny([aiueo])(.*)$/', $word, $matches);
+	$contains = preg_match('/^ny([a-z])(.*)$/', $word, $matches);
 
 	if ($contains === 1) {
 		return 'c' . $matches[1] . $matches[2];
@@ -46,7 +46,7 @@ public function prefixNYtoC($word)
 public function prefixNYtoNull($word)
 {
 	$matches  = null;
-	$contains = preg_match('/^ny([aiueo])(.*)$/', $word, $matches);
+	$contains = preg_match('/^ny([a-z])(.*)$/', $word, $matches);
 
 	if ($contains === 1) {
 		return  $matches[1] . $matches[2];
@@ -56,7 +56,7 @@ public function prefixNYtoNull($word)
 public function prefixNtoT($word)
 {
 	$matches  = null;
-	$contains = preg_match('/^n([aiueo])(.*)$/', $word, $matches);
+	$contains = preg_match('/^n([a-z])(.*)$/', $word, $matches);
 
 	if ($contains === 1) {
 		return 't' . $matches[1] . $matches[2];
@@ -74,7 +74,7 @@ public function prefixNtoT($word)
 public function prefixMtoP($word)
 {
 	$matches  = null;
-	$contains = preg_match('/^m([aiueo])(.*)$/', $word, $matches);
+	$contains = preg_match('/^m([a-z])(.*)$/', $word, $matches);
 
 	if ($contains === 1) {
 		return 'p' . $matches[1] . $matches[2];
@@ -93,7 +93,7 @@ public function prefixMtoNull($word)
 public function prefixNGtoK($word)
 {
 	$matches  = null;
-	$contains = preg_match('/^ng([aiueo])(.*)$/', $word, $matches);
+	$contains = preg_match('/^ng([a-z])(.*)$/', $word, $matches);
 
 	if ($contains === 1) {
 		return 'k' . $matches[1] . $matches[2];
