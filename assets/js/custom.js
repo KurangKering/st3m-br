@@ -94,4 +94,10 @@
     
 
   });
+
+  $(document).keypress(function(e){
+    if (e.which == 13){
+      $("#btn-temukan").click();
+    }
+  });
 });
