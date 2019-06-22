@@ -16,7 +16,7 @@
                 <h5>Total Kata Ketemu</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins"><?= $total_found ?></h1>
+                <h1 class="no-margins text-success"><?= $total_found ?></h1>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
                 <h5>Total Gagal</h5>
             </div>
             <div class="ibox-content">
-                <h1 class="no-margins"><?= $total_failed ?></h1>
+                <h1 class="no-margins text-danger"><?= $total_failed ?></h1>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                                 <th>Input</th>
                                 <th>Output</th>
                                 <th>Ketemu</th>
-                                <th>Action</th>
+                                <th>Rule</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,7 +91,7 @@
                                     <td><?= $uji['input']?></td>
                                     <td><?= $uji['output']?></td>
                                     <td><?= $alert ?></td>
-                                    <td>Edit | Hapus</td>
+                                    <td><?= $uji['rule'] ?></td>
                                 </tr>
                             <?php endforeach ?>
 

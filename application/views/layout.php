@@ -39,7 +39,10 @@
                     <div class="navbar-collapse collapse" id="navbar">
                         <ul class="nav navbar-nav mr-auto">
                             <li class="">
-                                <a aria-expanded="false" role="button" href="<?= site_url('/') ?>"> Kata Dasar</a>
+                                <a aria-expanded="false" role="button" href="<?= site_url('/') ?>"> Home</a>
+                            <li>
+                                <li class="">
+                                <a aria-expanded="false" role="button" href="<?= site_url('/welcome/data_dasar') ?>"> Kata Dasar</a>
                             </li>
                             <li class="">
                                 <a aria-expanded="false" role="button" href="<?= site_url('/welcome/data_uji') ?>"> Data Uji</a>
@@ -59,11 +62,11 @@
 
                         </ul>
                         <ul class="nav navbar-top-links navbar-right">
-                            <li>
+                            <!-- <li>
                                 <a href="<?= site_url('assets/template/login.html') ?>">
                                     <i class="fa fa-sign-out"></i> Log out
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -73,10 +76,9 @@
             </div>
             <div class="footer">
                 <div class="float-right">
-                    10GB of <strong>250GB</strong> Free.
                 </div>
                 <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2018
+                    <strong>Copyright</strong> 2019
                 </div>
             </div>
 
@@ -99,8 +101,6 @@
     <script src="<?= site_url('assets/template/js/inspinia.js') ?>"></script>
     <script src="<?= site_url('assets/template/js/plugins/pace/pace.min.js') ?>"></script>
     <script src="<?= site_url('assets/js/custom.js') ?>"></script>
-
-
 
 
 

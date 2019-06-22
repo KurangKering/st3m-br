@@ -47,4 +47,51 @@
 
 
   });
+
+
+  $("#btn-temukan").click(function(e) {
+    let inputKata = $("input[name='input-kata']").val();
+
+    $.ajax({
+      url: SITE_URL + 'welcome/single_stem',
+      type: 'POST',
+      dataType: 'json',
+      data: {'input-kata': inputKata},
+    })
+    .done(function(res) {
+      let status = $("#ket-status");
+      let input = $("#ket-input");
+      let output = $("#ket-output");
+      let rule = $("#ket-rule");
+
+
+      let classLabel = '';
+      let textLabel = '';
+      if (res.result == false)
+      {
+        classLabel = 'label label-danger';
+        textLabel = 'Tidak Ditemukan';
+      } 
+      else 
+      {
+        classLabel = 'label label-primary';
+        textLabel = 'Ditemukan';
+      }
+
+      status.removeClass('label-danger').removeClass('label-primary');
+      status.html(textLabel).addClass(classLabel);
+
+      input.html(res.input);
+      output.html(res.output);
+      rule.html(res.rule);
+
+      console.log(res);
+    })
+    .fail(function() {
+    })
+    .always(function() {
+    });
+    
+
+  });
 });

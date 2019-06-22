@@ -21,17 +21,21 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 
+		$vars['content'] = 'home';
+		return $this->load->view('layout', $vars);
 
+	}
+	public function data_dasar()
+	{
 		$datas = $this->db->select('id,kata')->get('kata_dasar')->result_array();
 
 		$vars['content'] = 'data_dasar';
 		$vars['data_dasar'] = $datas;
 		return $this->load->view('layout', $vars);
-
 	}
 
 	public function data_uji()
-	{
+	{	
 
 		$total_dasar = $this->db->from('kata_dasar')->count_all_results();
 		$data_uji = $this->db->select('id,kata')->get('kata_uji')->result_array();
@@ -47,6 +51,38 @@ class Welcome extends CI_Controller {
 
 	}
 
+	public function single_stem()
+	{
+		if ($this->input->is_ajax_request()) {
+			$kataUji = $this->input->post('input-kata');
+
+			$result = $this->db->get('kata_dasar');
+
+			$dictionaries = array();
+
+			foreach ($result->result_array() as $key => $res) {
+				$dictionaries[trim($res['kata'])] = trim($res['kata']);
+			}	
+			$configStem['dictionary'] = $dictionaries;
+
+			$this->load->library('Stem', $configStem);
+
+
+			$hasilUji = $this->stem->doStem( trim($kataUji));
+
+
+			$output['input'] = $kataUji;
+			$output['output'] = $hasilUji;
+			$output['result'] = $this->stem->isFound;
+			$output['rule'] =  implode(',',$this->stem->log);
+
+			header('Content-Type: application/json');
+			echo json_encode($output);
+		}
+
+		
+	}
+
 
 	public function stem_view($data_uji)
 	{
@@ -55,7 +91,7 @@ class Welcome extends CI_Controller {
 		$dictionaries = array();
 
 		foreach ($result->result_array() as $key => $res) {
-			$dictionaries[$res['kata']] = $res['kata'];
+			$dictionaries[trim($res['kata'])] = trim($res['kata']);
 		}	
 		$configStem['dictionary'] = $dictionaries;
 
@@ -70,13 +106,14 @@ class Welcome extends CI_Controller {
 		$countFalse = 0;
 		foreach ($data_uji as $uji) {
 
-			$output = $this->stem->doStem($uji['kata']);
+			$output = $this->stem->doStem( trim($uji['kata']));
 			
 
 			$hasilUji['data'][$count]['id'] = $uji['id'];
 			$hasilUji['data'][$count]['input'] = $uji['kata'];
 			$hasilUji['data'][$count]['output'] = $output;
 			$hasilUji['data'][$count]['result'] = $this->stem->isFound;
+			$hasilUji['data'][$count]['rule'] =  implode(',',$this->stem->log);
 			$count++;
 
 			if ($this->stem->isFound === true) {
